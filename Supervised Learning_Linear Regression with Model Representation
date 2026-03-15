@@ -1,0 +1,65 @@
+import numpy as np
+import matplotlib.pyplot as mtpyplt
+mtpyplt.style.use('./deeplearning.mplstyle')
+
+x_input = np.array([1.0, 2.0, 3.0, 4.0, 5.0])           #(size in 1000 square feet)
+y_output = np.array([300.0, 500.0, 700.0,900.0,1100.0])           #(price in 1000s of dollars)\
+
+m = x_input.size
+a = len(y_output)
+b = x_input.shape[0]
+c = x_input.shape
+
+print(f"Input Set- {x_input}")
+print(f'Output Set- {y_output}')
+print('Size of Input- ' , m , ' or ', b)
+print('Dimension of Input- ' , c)
+print('Size of Output- ' , z)
+
+print(f'For ex. 2nd input and 2nd output', x_input[1], ', ', y_output[1])
+
+
+#Compute Linear Regression Function
+#Lets say
+w = 200
+b = 100
+
+f_x_input_1 = w*x_input[0] + b
+f_x_input_2 = w*x_input[1] + b
+f_x_input_3 = w*x_input[2] + b
+f_x_input_4 = w*x_input[3] + b
+f_x_input_5 = w*x_input[4] + b
+
+print('Linear Regression Function value at i = 0 is ', f_x_input_1)
+print('Linear Regression Function value at i = 0 is ', f_x_input_2)
+print('Linear Regression Function value at i = 0 is ', f_x_input_3)
+print('Linear Regression Function value at i = 0 is ', f_x_input_4)
+print('Linear Regression Function value at i = 0 is ', f_x_input_5)
+
+#or Using For loop
+#Create a general function with size as input list and all the values default to 0
+
+f_x_input = np.zeros(m)
+
+print('Before Calculation Linear Regression Function output is ', f_x_input)
+    
+    
+for i in range(m):
+    f_x_input[i] = w*x_input[i] + b
+    
+tmp_f_wb = f_x_input   
+print('After Calculation Linear Regression Function output is ', f_x_input)
+  
+
+    
+#Create a plot for Linear Regression Prediction Function
+mtpyplt.plot(x_input, tmp_f_wb, c='b',label='Our Prediction')
+mtpyplt.grid()
+#Using scatter() function in the matplotlib library, 
+#arguments marker and c show the points as red crosses (the default is blue dots).
+mtpyplt.scatter(x_input,y_output,marker='x',c='r')
+mtpyplt.title('First ML Program - Linear Regression')
+mtpyplt.ylabel('Price (in 1000s of Rupees)')
+mtpyplt.xlabel('Size (1000 sqft)')
+mtpyplt.legend()
+mtpyplt.show()
