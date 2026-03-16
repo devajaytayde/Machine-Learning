@@ -1,0 +1,4 @@
+#Batch - Each batch of Gredient Descent uses all the input training set examples
+#Convergence - Reaching out closer down to Zero values of Cost function 
+#Divergence  - Reaching far from Zero values to higher values of Cost function 
+
