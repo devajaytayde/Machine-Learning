@@ -1,0 +1,90 @@
+import numpy as np
+import matplotlib.pyplot as mtpyplt
+mtpyplt.style.use('./deeplearning.mplstyle')
+
+##############################################################
+
+def compute_cost_func_regression_with_one_param(x_i):
+    
+    x_input = np.array([1.0, 2.0, 3.0, 4.0, 5.0])           #(size in 1000 square feet)
+    y_output = np.array([300.0, 500.0, 700.0,900.0,1100.0])           #(price in 1000s of dollars)\
+
+    m = x_input.size
+    a = len(y_output)
+    b = x_input.shape[0]
+    c = x_input.shape
+    z = y_output.shape[0]
+
+    print(f"Input Set- {x_input}")
+    print(f'Output Set- {y_output}')
+    print('Size of Input- ' , m , ' or ', b)
+    print('Dimension of Input- ' , c)
+    print('Size of Output- ' , z)
+    print(f'For ex. 2nd input and 2nd output', x_input[1], ', ', y_output[1])
+
+
+    #Compute Linear Regression Model
+    f_x_input = np.zeros(m)
+    
+    print('Before Calculation Linear Regression Function output is ', f_x_input)
+    
+    #Lets say
+    w = 211.6
+    b = 100
+
+    f_x_input_1 = w*x_input[0] + b
+    f_x_input_2 = w*x_input[1] + b
+    f_x_input_3 = w*x_input[2] + b
+    f_x_input_4 = w*x_input[3] + b
+    f_x_input_5 = w*x_input[4] + b
+
+    #or Using For loop
+    #Create a general function with size as input list and all the values default to 0
+    
+    
+    cost_summation = 0
+    for i in range(m):
+        f_x_input[i] = w*x_input[i] + b
+        cost = (f_x_input[i] - y_output[i])**2
+        cost_summation = cost + cost_summation
+    
+    total_cost = (1 / (2 * m)) * cost_summation  
+
+    print('After Calculation Linear Regression Function output is ', f_x_input)
+  
+    f_x_prediction  = w*x_i + b  
+    
+        
+    #Create a plot for Linear Regression Prediction Function
+    mtpyplt.plot(x_input, f_x_input, c='b',label='Trend')
+    mtpyplt.plot(x_i, f_x_prediction,c='green',label='Predicted Price')
+    mtpyplt.grid()
+    #Using scatter() function in the matplotlib library, 
+    #arguments marker and c show the points as red crosses (the default is blue dots).
+    mtpyplt.scatter(x_input,y_output,marker='x',c='r')
+    mtpyplt.scatter(x_i,f_x_prediction,marker='x',c='g')
+    mtpyplt.title('First ML Program - Linear Regression')
+    mtpyplt.ylabel('Price (in 1000s of Rupees)')
+    mtpyplt.xlabel('Size (1000 sqft)')
+    mtpyplt.legend()
+    mtpyplt.show()
+
+    
+    
+    
+    
+    return f_x_prediction , total_cost
+
+###############################################################
+
+
+#Now that we have a model, we can use it to make our original prediction. 
+#Let's predict the price of a house with 1200 sqft. Since the units of  𝑥
+#are in 1000's of sqft,  𝑥
+#  is 1.3
+x_i = 4.38
+
+predicted_price, cost_fun = compute_cost_func_regression_with_one_param(x_i)
+
+print(f'The Predicted Price of a ',x_i*1000, ' sqft is' , predicted_price*1000 , '$')
+print(f'The Cost is ', cost_fun)
